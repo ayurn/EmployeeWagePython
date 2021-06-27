@@ -19,14 +19,26 @@ day_hour = 0
 
 
 def is_absent():
+    """
+    executes when employee is absent
+    :return: day hour as 0 when employee is absent
+    """
     return day_hour
 
 
 def is_full_time():
+    """
+    executes when employee type is full time
+    :return: day hours as 8
+    """
     return FULL_TIME_HOURS
 
 
 def is_part_time():
+    """
+    executes when employee type is part time
+    :return: day hours as 4
+    """
     return PART_TIME_HOURS
 
 
