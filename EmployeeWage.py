@@ -1,8 +1,8 @@
 """
 @Author: Ayur Ninawe
-@Date: 2021-06-27 16:56:30
+@Date: 2021-06-27 17:12:30
 @Last Modified by: Ayur Ninawe
-@Last Modified time: 2021-06-27 16:56:30
+@Last Modified time: 2021-06-27 17:12:30
 @Title : Employee Wage Computation.
 
 """
@@ -11,17 +11,24 @@ import random
 
 print("Welcome to Employee Wage Computation")
 
-IS_ABSENT = 0
-IS_PRESENT = 1
 WAGE_PER_HOUR = 20
 
-full_day_hour = 0
-attendance_check = random.randint(0, 1)
-if attendance_check == IS_PRESENT:
-    full_day_hour = 8
+day_hour = 0
 
-elif attendance_check == IS_ABSENT:
+employee_attendance_type = ['is_absent', 'is_present']
+attendance_check = random.choice(employee_attendance_type)
+
+if attendance_check == employee_attendance_type[1]:
+    total_employee_types = ['full_time', 'part_time']
+    employee_type = random.choice(total_employee_types)
+
+    if employee_type == total_employee_types[0]:
+        day_hour = 8
+    else:
+        day_hour = 4
+
+elif attendance_check == employee_attendance_type[0]:
     pass
 
-employee_wage = WAGE_PER_HOUR * full_day_hour
-print("Employee wage is : ", employee_wage)
+employee_wage = WAGE_PER_HOUR * day_hour
+print("employee wage is : ", employee_wage)
