@@ -4,70 +4,60 @@
 @Last Modified by: Ayur Ninawe
 @Last Modified time: 2021-06-27 17:30:30
 @Title : Employee Wage Computation.
-
 """
 
 import random
+print("Wellcome to employee wage computation")
 
-print("Welcome to Employee Wage Computation")
-
-"constant variables"
-WAGE_PER_HOUR = 20
-FULL_TIME_HOURS = 8
-PART_TIME_HOURS = 4
-DAYS_FOR_MONTH = 20
-HOURS_FOR_MONTH = 100
-current_working_hours = 0
-current_working_days = 0
-total_employee_wage = 0
-
-
-def is_absent():
+def calculate_Hour(employee_status):
     """
-    executes when employee is absent
-    :return: day hour as 0 when employee is absent
+    Description:
+        this function determine the work hours
+    Parameter:
+        employee_status is used to determine work hour of employee
+    Return:
+        the functution return 8 or 4 or 0 value as work hour
     """
-    return 0
+    if employee_status == is_full_time:
+        day_hour = 8
+    elif employee_status == is_part_time:
+        day_hour = 4 
+    else:
+        day_hour = 0
+    return day_hour
+    
 
-
-def is_full_time():
+def calculate_Wage():
     """
-    executes when employee type is full time
-    :return: day hours as 8
+    Description:
+        this function calculate employee wage
+    Return:
+        this function return total employee wage of a month
     """
-    return FULL_TIME_HOURS
+    WAGE_PER_HOUR = 20
+    DAYS_FOR_MONTH = 20
+    HOURS_FOR_MONTH = 100
+    working_days = 0
+    total_working_hours = 0
+    total_wage = 0
+    while working_days < DAYS_FOR_MONTH and total_working_hours < HOURS_FOR_MONTH:
+        attendance = random.randint(0,2)
+        employee_status = switcher.get(attendance)
+        working_hours = calculate_Hour(employee_status)
+        total_wage += working_hours * WAGE_PER_HOUR
+        total_working_hours += working_hours
+        working_days += 1
+    print("Total working hours:", total_working_hours)
+    return total_wage
 
+absent = 0
+is_full_time = 1
+is_part_time = 2
 
-def is_part_time():
-    """
-    executes when employee type is part time
-    :return: day hours as 4
-    """
-    return PART_TIME_HOURS
+switcher = {
+    0: absent,
+    1: is_full_time,
+    2: is_full_time,
+}
 
-
-def wage_calculation():
-    """
-    function for calculating the daily wage of an employee
-    :return: day hours and daily employee wage
-    """
-    employee_status = {0: is_absent, 1: is_full_time, 2: is_part_time}
-    attendance_check = random.randint(0, 2)
-    day_hour = employee_status.get(attendance_check)()
-    daily_employee_wage = WAGE_PER_HOUR * day_hour
-    return day_hour, daily_employee_wage
-
-
-"""
-loop gets executed till current working days reach 20 or total working hours reach 100
-"""
-while current_working_days <= DAYS_FOR_MONTH and current_working_hours <= HOURS_FOR_MONTH:
-    day_hour, daily_employee_wage = wage_calculation()
-    total_employee_wage = total_employee_wage + daily_employee_wage
-    current_working_hours = current_working_hours + day_hour
-    current_working_days = current_working_days + 1
-
-"""
-prints the total employee wage for that month
-"""
-print(total_employee_wage)
+print("Total employee wage for month is:",calculate_Wage())
