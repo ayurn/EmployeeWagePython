@@ -35,6 +35,7 @@ def calculate_Wage():
         this function return total employee wage of a month
     """
     daily_wage_list = []
+    wage_data_dict = {}
     WAGE_PER_HOUR = 20
     DAYS_FOR_MONTH = 20
     HOURS_FOR_MONTH = 100
@@ -50,8 +51,14 @@ def calculate_Wage():
         total_wage +=daily_wage
         total_working_hours += working_hours
         working_days += 1
-    print("Daily wage:", daily_wage_list)
-    return total_wage
+
+        wage_data_dict ["Day "+str(working_days+1)]= {
+        "daily_wage": daily_wage,
+        "total_wage": total_wage
+        }
+    #print("Daily wage:", daily_wage_list)
+    #return total_wage
+    return wage_data_dict
 
 absent = 0
 is_full_time = 1
